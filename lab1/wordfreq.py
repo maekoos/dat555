@@ -26,17 +26,6 @@ def tokenize(lines: list[str]):
     return words
 
 
-# Ett alternativt sätt:
-# import re
-# def tokenize(lines: List[str]):
-#     words = []
-#     for line in lines:
-#         line = line.lower()
-#         m = re.findall(r'([a-zåäö]+|[0-9]+|[^\s])', line)
-#         words.extend(m)
-#     return words
-
-
 def countWords(words: list[str], stopWords: list[str]):
     a = {}
     for word in words:
