@@ -20,23 +20,36 @@ def poly(a: list[float], x: float):
     return y
 
 
-m = transpose(loadtxt(sys.argv[1]))
-X = m[0]
-Y = m[1]
-n = int(sys.argv[2])
+def compute_lin_reg(X, Y, n):
+    Xp = powers(X, 0, n)
+    Yp = powers(Y, 1, 1)
+    Xpt = Xp.transpose()
+    a = matmul(linalg.inv(matmul(Xpt, Xp)), matmul(Xpt, Yp))
+    a = a[:, 0]
 
-Xp = powers(X, 0, n)
-Yp = powers(Y, 1, 1)
-Xpt = Xp.transpose()
-a = matmul(linalg.inv(matmul(Xpt, Xp)), matmul(Xpt, Yp))
-a = a[:, 0]
+    return a
 
-plt.plot(X, Y, 'ro')
 
-X2 = linspace(X[0], X[-1], int((X[-1]-X[0])/0.2)).tolist()
-Y2 = []
-for x in X2:
-    Y2.append(poly(a, x))
-plt.plot(X2, Y2)
+def main():
+    m = transpose(loadtxt(sys.argv[1]))
+    X = m[0]
+    Y = m[1]
+    n = int(sys.argv[2])
 
-plt.show()
+    a = compute_lin_reg(X, Y, n)
+
+    plt.plot(X, Y, 'ro')
+
+    X2 = linspace(X[0], X[-1], int((X[-1]-X[0])/0.2)).tolist()
+    Y2 = []
+    for x in X2:
+        Y2.append(poly(a, x))
+    plt.plot(X2, Y2)
+
+    plt.show()
+
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
