@@ -5,7 +5,7 @@ import random
 class Game:
     """ Create a game with a given size of cannon (length of sides) and projectiles (radius) """
     def __init__(self, cannonSize, ballSize):
-        self.players = [Player(self, False, -90, "blue"), Player(self, True, 90, "pink")]
+        self.players = [Player(self, False, -90, "blue"), Player(self, True, 90, "red")]
         self.currentPlayerIndex = 0
         self.cannonSize = cannonSize
         self.ballSize = ballSize

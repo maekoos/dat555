@@ -183,4 +183,4 @@ class Button:
         self.active = 0
 
 
-GameGraphics(Game(11, 15)).play()
+GameGraphics(Game(11, 3)).play()
